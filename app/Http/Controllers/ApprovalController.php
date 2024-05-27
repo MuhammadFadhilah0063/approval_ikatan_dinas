@@ -91,15 +91,15 @@ class ApprovalController extends Controller
                 // Bagian Data
                 $pdf->SetFont('Arial', '', 9);
                 $pdf->SetXY(63.25, 67.9);
-                $pdf->Write(8, ucwords(strtolower($data->nama_peserta)));
+                $pdf->Write(8, $data->nama_peserta);
                 $pdf->SetXY(63.25, 70.9);
                 $pdf->Write(15.8, $data->nrp_peserta);
                 $pdf->SetXY(63.25, 73.9);
-                $pdf->Write(23.4, ucwords(strtolower($data->departemen)));
+                $pdf->Write(23.4, $data->departemen);
                 $pdf->SetXY(63.25, 76.9);
-                $pdf->Write(31.4, ucwords(strtolower($data->posisi)));
+                $pdf->Write(31.4, $data->posisi);
                 $pdf->SetXY(63.25, 79.9);
-                $pdf->Write(38.8, ucwords(strtolower($data->nama_pelatihan)));
+                $pdf->Write(38.8, $data->nama_pelatihan);
                 $pdf->SetXY(63.25, 82.9);
                 $pdf->Write(46.8, dateFormat($data->waktu_pelatihan));
                 $pdf->SetXY(63.25, 85.9);
