@@ -83,6 +83,11 @@ class ApprovalController extends Controller
             // Tambahkan teks pada halaman pertama sebagai contoh
             if ($pageNo == 1) {
 
+                // Bagian Nomor Surat
+                $pdf->SetFont('Arial', '', 8);
+                $pdf->SetXY(100.25, 48.22);
+                $pdf->Write(8, $data->no_surat);
+
                 // Bagian Data
                 $pdf->SetFont('Arial', '', 9);
                 $pdf->SetXY(63.25, 67.9);
