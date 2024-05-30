@@ -39,13 +39,6 @@
 
     {{-- Jquery Signature --}}
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.signature.css">
-
-    {{-- Custom CSS --}}
-    <style>
-      .btn-export:focus {
-        color: white;
-      }
-    </style>
   </head>
 
   <body>

@@ -18,9 +18,19 @@ class IkatanDinasController extends Controller
     {
         // Yajra DataTables
         if (request()->ajax()) {
-            $data = IkatanDinas::orderBy("id", "DESC");
-            return DataTables::of($data)
-                ->make(true);
+            $level = Auth::user()->level;
+
+            if ($level == "Administrasi") {
+                $data = IkatanDinas::orderBy("id", "DESC");
+                return DataTables::of($data)
+                    ->make(true);
+            } else {
+                $data = IkatanDinas::where('status', 1)
+                    ->where('approve', 0)
+                    ->orderBy("id", "DESC");
+                return DataTables::of($data)
+                    ->make(true);
+            }
         }
 
         $user = Auth::user();
