@@ -39,6 +39,26 @@
 
     {{-- Jquery Signature --}}
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.signature.css">
+
+    <style>
+      /* Datatable Start */
+
+      .dataTables_filter,
+      .dataTables_length {
+        padding-top: 5px !important;
+        margin-bottom: 15px !important;
+      }
+
+      .dataTables_info {
+        margin-top: 15px !important;
+      }
+
+      .dataTables_paginate {
+        margin-top: 20px !important;
+      }
+
+      /* Datatable End */
+    </style>
   </head>
 
   <body>
@@ -159,6 +179,14 @@
                   <p>Data Ikatan Dinas</p>
                 </a>
               </li>
+
+              <!-- Data Evaluasi Atasan -->
+              <li class="nav-item {{ Request::is('data-evaluasi-atasan') ? 'active' : '' }}">
+                <a class="collapsed" href="{{ route('evaluasi_atasan') }}">
+                  <i class="fas fa-server"></i>
+                  <p>Data Evaluasi Atasan</p>
+                </a>
+              </li>
             </ul>
             <!-- Menu End -->
           </div>
@@ -171,7 +199,7 @@
         <div class="content">
           <div class="panel-header">
             <div class="page-inner text-center py-5">
-              <h2 class="text-white pb-2 fw-bold h1">Data Ikatan Dinas</h2>
+              <h2 class="text-white pb-2 fw-bold h1">{{ $title_header ?? "Data Ikatan Dinas" }}</h2>
             </div>
           </div>
 

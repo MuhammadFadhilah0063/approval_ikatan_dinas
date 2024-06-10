@@ -14819,3 +14819,14 @@ body[data-background-color="dark"] .board {
   background-color: transparent !important;
   color: #3a3b45;
 }
+.card {
+  overflow: hidden !important;
+}
+
+.card-header.custom-header {
+  background-color: #061e42;
+  color: #eee;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 20px;
+}

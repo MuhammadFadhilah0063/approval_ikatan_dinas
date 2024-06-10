@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('lama_ikatan_dinas', 20);
             $table->date('tgl_selesai_ikatan_dinas');
             $table->boolean('status')->default(0);
+            $table->boolean('approve')->default(0);
             $table->date('tgl_ttd')->nullable();
             $table->text('ttd')->nullable();
         });

@@ -1,3 +1,29 @@
+/**
+ * Mengatur teks yang akan ditampilkan dalam bahasa Indonesia pada DataTables.
+ * Digunakan untuk mengatur teks seperti "Sedang memproses...", "Tampilkan _MENU_ data", dsb.
+ *
+ * @returns {object} Objek berisi teks dalam bahasa Indonesia untuk konfigurasi DataTables.
+ */
+function bahasa() {
+  return {
+    "sProcessing": "Sedang memproses...",
+    "sLengthMenu": "Tampilkan _MENU_  data",
+    "sZeroRecords": "Tidak ditemukan data yang sesuai",
+    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+    "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+    "sInfoFiltered": "(disaring dari _MAX_ data keseluruhan)",
+    "sInfoPostFix": "",
+    "sSearch": "Pencarian:",
+    "sUrl": "",
+    "oPaginate": {
+      "sFirst": "Pertama",
+      "sPrevious": "<",
+      "sNext": ">",
+      "sLast": "Terakhir"
+    }
+  }
+}
+
 
 // Fungsi untuk mengonversi tanggal dari format YYYY-MM-DD menjadi format "dd MonthName YYYY"
 function dateFormat(dateString) {

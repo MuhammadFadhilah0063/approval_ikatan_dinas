@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nrp', 20)->unique();
             $table->string('nama', 100);
-            $table->enum('level', ['administrasi', 'atasan']);
-            $table->string('foto', 255);
+            $table->enum('level', ['Administrasi', 'HC Section Head']);
             $table->string('password', 255);
         });
     }

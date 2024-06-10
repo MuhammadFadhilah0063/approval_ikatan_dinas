@@ -1,4 +1,26 @@
 <?php
+
+// Helper Fpdi
+
+function write2LineText($pdf, $text, $x, $y, $y_awal, $maxLength, $lineHeight)
+{
+  $lines = str_split($text, $maxLength); // Membagi teks menjadi baris-baris dengan panjang maksimal
+  $additionalY = 0; // Penambahan koordinat Y setelah semua teks ditulis
+
+  if (strlen($text) <= $maxLength) {
+    $y = $y_awal; // Koordinat Y awal
+  }
+
+  foreach ($lines as $line) {
+    $pdf->SetXY($x, $y + $additionalY);
+    $pdf->Write(0, $line);
+    $y += $lineHeight; // Menaikkan posisi Y untuk baris berikutnya
+  }
+}
+
+// Helper Fpdi
+
+
 // Fungsi untuk membuat kode random
 function generateCode($length = 5)
 {
