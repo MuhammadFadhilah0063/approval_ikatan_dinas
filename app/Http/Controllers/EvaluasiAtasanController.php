@@ -103,7 +103,7 @@ class EvaluasiAtasanController extends Controller
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($pathImgSection, $image_base64);
             [$width, $height] = getimagesize($pathImgSection);
-            $imageSectionHeight = (100 / $width) * $height;
+            $imageSectionHeight = (200 / $width) * $height;
         }
 
         // TTD Atasan
@@ -113,7 +113,7 @@ class EvaluasiAtasanController extends Controller
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($pathImgAtasan, $image_base64);
             [$width, $height] = getimagesize($pathImgAtasan);
-            $imageAtasanHeight = (100 / $width) * $height;
+            $imageAtasanHeight = (200 / $width) * $height;
         }
 
         $tgl_ttd_atasan = ($data->tgl_ttd_atasan) ? dateFormat($data->tgl_ttd_atasan) : "";
