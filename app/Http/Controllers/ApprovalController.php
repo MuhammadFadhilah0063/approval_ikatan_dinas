@@ -110,23 +110,39 @@ class ApprovalController extends Controller
 
                 // Bagian Nama Section Head
                 $pdf->SetFont('Arial', 'BU', 9);
-                $pdf->SetXY(25.8, 244.4);
-                $pdf->Write(8, ucwords(strtolower($sectionHead->nama)));
-
+                $initialX = 37.7;
+                $initialY = 248.5;
+                $text     = ucwords(strtolower($sectionHead->nama));
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
+                
                 // Bagian Section Head
                 $pdf->SetFont('Arial', 'B', 9);
-                $pdf->SetXY(25.8, 248.8);
-                $pdf->Write(8, "HC Section Head");
+                $initialX = 37.7;
+                $initialY = 252.9;
+                $text     = "HC Section Head";
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
 
                 // Bagian Nama Peserta
                 $pdf->SetFont('Arial', 'BU', 9);
-                $pdf->SetXY(136.8, 244.6);
-                $pdf->Write(8, ucwords(strtolower($data->nama_peserta)));
+                $initialX = 146.8;
+                $initialY = 248.5;
+                $text     = ucwords(strtolower($data->nama_peserta));
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
 
                 // Bagian Peserta
                 $pdf->SetFont('Arial', 'B', 9);
-                $pdf->SetXY(136.8, 249);
-                $pdf->Write(8, $data->posisi);
+                $initialX = 146.8;
+                $initialY = 252.9;
+                $text     = $data->posisi;
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
             }
         }
 

@@ -259,6 +259,20 @@
                   $(`a.btn-lihat-file`).attr('href',
                     `/ikatan-dinas/review-file/${response.kode_ikatan_dinas}`);
                   $(`form.needs-validation`).removeClass('d-none');
+
+                  // Signature
+                  var sig = $('#sig').signature({
+                    syncField: '#signature64',
+                    syncFormat: 'PNG',
+                    background: 'transparent'
+                  });
+
+                  $('#clear').click(function(e) {
+                    e.preventDefault();
+                    sig.signature('clear');
+                    $("#signature64").val('');
+                  });
+
                   notifySuccessWithHideLoader(response.message, "Berhasil", "center");
                 } else {
                   // Menampilkan notif dan hilangkan loader
@@ -361,18 +375,6 @@
           }
         });
         // Proses approval - End
-
-        // Signature
-        var sig = $('#sig').signature({
-          syncField: '#signature64',
-          syncFormat: 'PNG',
-          background: 'transparent'
-        });
-        $('#clear').click(function(e) {
-          e.preventDefault();
-          sig.signature('clear');
-          $("#signature64").val('');
-        });
 
         // Checkbox
         $(`input[name="check"]`).on("click", function() {

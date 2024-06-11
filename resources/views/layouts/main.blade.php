@@ -56,7 +56,6 @@
       .dataTables_paginate {
         margin-top: 20px !important;
       }
-
       /* Datatable End */
     </style>
   </head>
@@ -232,13 +231,13 @@
           <div class="modal-body">
             <ul class="nav nav-pills nav-primary nav-pills-no-bd nav-pills-icons justify-content-center mt-2"
               id="pills-tab-with-icon" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link text-center active" id="pills-nama-tab-icon" data-toggle="pill"
+              <li class="nav-item submenu">
+                <a class="nav-link text-center" id="pills-nama-tab-icon" data-toggle="pill"
                   href="#pills-nama-icon" role="tab" aria-controls="pills-nama-icon" aria-selected="true">
                   Ubah<br>Nama
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item submenu">
                 <a class="nav-link text-center" id="pills-password-tab-icon" data-toggle="pill"
                   href="#pills-password-icon" role="tab" aria-controls="pills-password-icon"
                   aria-selected="false">
@@ -246,8 +245,8 @@
                 </a>
               </li>
               @if ($user->level != 'Administrasi')
-                <li class="nav-item">
-                  <a class="nav-link text-center" id="pills-ttd-tab-icon" data-toggle="pill" href="#pills-ttd-icon"
+                <li class="nav-item submenu">
+                  <a class="nav-link text-center active show" id="pills-ttd-tab-icon" data-toggle="pill" href="#pills-ttd-icon"
                     role="tab" aria-controls="pills-ttd-icon" aria-selected="false">
                     Ubah<br>Tanda Tangan
                   </a>
@@ -257,7 +256,7 @@
             <hr>
             <div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
               <!-- Ubah Nama -->
-              <div class="tab-pane fade show active" id="pills-nama-icon" role="tabpanel"
+              <div class="tab-pane fade" id="pills-nama-icon" role="tabpanel"
                 aria-labelledby="pills-nama-tab-icon">
                 <form class="needs-validation-nama" novalidate>
                   <div class="form-group">
@@ -293,19 +292,16 @@
               </div>
               <!-- Ubah TTD -->
               @if ($user->level != 'Administrasi')
-                <div class="tab-pane fade" id="pills-ttd-icon" role="tabpanel" aria-labelledby="pills-ttd-tab-icon">
+                <div class="tab-pane fade active show" id="pills-ttd-icon" role="tabpanel" aria-labelledby="pills-ttd-tab-icon">
                   <form class="needs-validation-ttd" novalidate>
-                    <div class="form-group">
+                    <div class="form-group text-center">
                       <label for="nama">Tanda Tangan</label>
                       <div>
-                        <div id="sig" class="d-flex mb-2" style="height: 170px"></div>
-                        <button id="clear" class="btn btn-danger btn-sm">Bersihkan</button>
-                        <textarea id="signature64" name="ttd" style="display: none" required></textarea>
+                        <div id="sig" class="mb-2" style="height: 170px;"></div>
                       </div>
-                    </div>
-
-                    <div class="form-group d-flex justify-content-center">
-                      <button type=" submit" class="btn btn-primary btn-submit" data-action="add">Simpan</button>
+                      <button id="clear" class="btn btn-sm btn-danger">Bersihkan &nbsp;</button>
+                      <button type=" submit" class="btn btn-sm btn-primary btn-submit" data-action="add">Simpan</button>
+                      <textarea id="signature64" name="ttd" style="display: none" class="form-control" required></textarea>
                     </div>
                   </form>
                 </div>
@@ -356,13 +352,6 @@
     <script>
       $(document).ready(function() {
 
-        // Inisiasi Signature
-        var sig = $('#sig').signature({
-          syncField: '#signature64',
-          syncFormat: 'PNG',
-          background: 'transparent'
-        });
-
         // Proses Logout
         $(".btn-logout").on("click", function() {
           // Tampil loader
@@ -392,6 +381,29 @@
         });
         // Proses Logout - End
 
+
+        // Proses ketika modal pengaturan akun dibuka
+        $('#modalPengaturan').on('show.bs.modal', function() {
+         
+            // Inisialisasi signature pad
+            var sig = $('#sig').signature({
+              syncField: '#signature64',
+              syncFormat: 'PNG',
+              background: 'transparent',
+            });
+
+            // $('#sig canvas').attr('width', 500);
+
+            // Tombol clear untuk menghapus signature
+            $('#clear').click(function(e) {
+              e.preventDefault();
+              sig.signature('clear');
+              $("#signature64").val('');
+            });
+        });
+        // Proses ketika modal pengaturan akun dibuka - End
+
+
         // Proses ketika modal pengaturan akun ditutup
         $('#modalPengaturan').on('hidden.bs.modal', function() {
 
@@ -408,6 +420,7 @@
           $('#modalPengaturan input[name="password_baru"]').val("");
         });
         // Proses ketika modal pengaturan akun ditutup - End
+
 
         // Proses ubah nama
         $(".needs-validation-nama").validate({
@@ -487,6 +500,7 @@
           }
         });
         // Proses ubah nama - End
+
 
         // Proses ubah password
         $(".needs-validation-password").validate({
@@ -574,6 +588,7 @@
         });
         // Proses ubah password - End
 
+
         // Proses ubah ttd
         $(".needs-validation-ttd").validate({
           ignore: [],
@@ -652,14 +667,6 @@
           }
         });
         // Proses ubah ttd - End
-
-        // Proses Clear Signature
-        $('#clear').click(function(e) {
-          e.preventDefault();
-          sig.signature('clear');
-          $("#signature64").val('');
-        });
-        // Proses Clear Signature - End
 
       });
     </script>

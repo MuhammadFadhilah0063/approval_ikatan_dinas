@@ -105,7 +105,7 @@ class IkatanDinasController extends Controller
             file_put_contents($pathImgSection, $image_base64);
             // Get image dimensions
             [$width, $height] = getimagesize($pathImgSection);
-            $imageSectionHeight = ($imageWidth / $width) * $height; // Maintain aspect ratio
+            $imageSectionHeight = (100 / $width) * $height; // Maintain aspect ratio
             // Gambar TTD Section Head
         }
 
@@ -117,7 +117,7 @@ class IkatanDinasController extends Controller
             file_put_contents($pathImgPeserta, $image_base64);
             // Get image dimensions
             [$width, $height] = getimagesize($pathImgPeserta);
-            $imagePesertaHeight = ($imageWidth / $width) * $height; // Maintain aspect ratio
+            $imagePesertaHeight = (150 / $width) * $height; // Maintain aspect ratio
             // Gambar TTD Peserta
         }
 
@@ -171,35 +171,59 @@ class IkatanDinasController extends Controller
 
                 // Bagian Nama Section Head
                 $pdf->SetFont('Arial', 'BU', 9);
-                $pdf->SetXY(25.8, 244.4);
-                $pdf->Write(8, ucwords(strtolower($sectionHead->nama)));
-
+                $initialX = 37.7;
+                $initialY = 248.5;
+                $text     = ucwords(strtolower($sectionHead->nama));
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
+                
                 // Bagian Section Head
                 $pdf->SetFont('Arial', 'B', 9);
-                $pdf->SetXY(25.8, 248.8);
-                $pdf->Write(8, "HC Section Head");
-
+                $initialX = 37.7;
+                $initialY = 253.1;
+                $text     = "HC Section Head";
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
+                
                 // Bagian TTD Section Head
                 if (isset($pathImgSection)) {
                     if ($data->approve == 1) {
-                        $pdf->Image($pathImgSection, 17.5, 220.4, $imageWidth / 2, $imageSectionHeight / 2);
+                        $initialX = 38.5;
+                        $initialY = 222.1;
+                        $width    = 100 / 2.1;
+                        $height   = $imagePesertaHeight / 2.1;
+                        $pdf->Image($pathImgSection, $initialX - ($width / 2), $initialY, $width, $height);
                     }
                 }
 
                 // Bagian Nama Peserta
                 $pdf->SetFont('Arial', 'BU', 9);
-                $pdf->SetXY(136.8, 244.6);
-                $pdf->Write(8, ucwords(strtolower($data->nama_peserta)));
+                $initialX = 146.8;
+                $initialY = 248.5;
+                $text     = ucwords(strtolower($data->nama_peserta));
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
 
                 // Bagian Peserta
                 $pdf->SetFont('Arial', 'B', 9);
-                $pdf->SetXY(136.8, 249);
-                $pdf->Write(8, $data->posisi);
+                $initialX = 146.8;
+                $initialY = 252.9;
+                $text     = $data->posisi;
+                $textWidth = $pdf->GetStringWidth($text);
+                $pdf->SetXY($initialX - ($textWidth / 2), $initialY);
+                $pdf->Write(0, $text);
 
                 // Bagian TTD Peserta
                 if (isset($pathImgPeserta)) {
                     if ($data->status == 1) {
-                        $pdf->Image($pathImgPeserta, 127.5, 220.4, $imageWidth / 2, $imagePesertaHeight / 2);
+                        $initialX = 147.9;
+                        $initialY = 222.3;
+                        $width    = 100 / 2.1;
+                        $height   = $imagePesertaHeight / 2.1;
+                        $pdf->Image($pathImgPeserta, $initialX - ($width / 2), $initialY, $width, $height);
                     }
                 }
             }

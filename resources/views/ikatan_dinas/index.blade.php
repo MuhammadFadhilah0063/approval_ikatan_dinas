@@ -6,8 +6,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table id="tableData" class="display table table-striped table-hover">
+            <table id="tableData" class="display table table-striped table-hover" style="width: 100%;">
               <thead style="background-color: #0B2D61 !important; color: rgb(232, 229, 229);">
                 <tr>
                   <th>No</th>
@@ -49,7 +48,6 @@
               <tbody>
               </tbody>
             </table>
-          </div>
         </div>
         @if ($user->level == 'Administrasi')
           <div class="card-footer text-center">
@@ -242,6 +240,7 @@
       // Datatable
       var dataTable = $('#tableData').DataTable({
         pageLength: 25,
+        scrollX: true,
         processing: true,
         serverSide: true,
         ajax: "{{ url()->current() }}",

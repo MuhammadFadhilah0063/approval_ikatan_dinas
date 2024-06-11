@@ -264,7 +264,6 @@
       var dataTable = $('#tableData').DataTable({
         pageLength: 25,
         scrollX: true,
-        language: bahasa(),
         processing: true,
         serverSide: true,
         ajax: "{{ url()->current() }}",
