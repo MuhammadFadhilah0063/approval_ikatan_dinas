@@ -290,9 +290,9 @@ class PenilaianController extends Controller
 
                 // Bagian TTD Atasan
                 if ($pathImgAtasan != "") {
-                    $initialX = 190.7;
+                    $initialX = 190.1;
                     $initialY = 241.8;
-                    $width    = 100 / 5.25;
+                    $width    = 120 / 5.25;
                     $height   = $imageAtasanHeight / 5.25;
                     $pdf->Image($pathImgAtasan, $initialX - ($width / 2), $initialY, $width, $height);
                 }
@@ -328,9 +328,9 @@ class PenilaianController extends Controller
                 // Bagian TTD HCGA
                 if ($data->status_approve == "Sudah") {
                     if ($pathImgSection != "") {
-                        $initialX = 190.8;
+                        $initialX = 190.1;
                         $initialY = 259.4;
-                        $width    = 100 / 5.21;
+                        $width    = 120 / 5.21;
                         $height   = $imageSectionHeight / 5.21;
                         $pdf->Image($pathImgSection, $initialX - ($width / 2), $initialY, $width, $height);
                     }
