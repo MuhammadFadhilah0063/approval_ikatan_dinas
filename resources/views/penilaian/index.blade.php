@@ -99,25 +99,25 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="row row-review-file d-none" style="margin-top: -15px;">
-                        <div class="col">
-                          <div class="form-group">
-                            <span>
-                              Form Evaluasi Hasil Pelatihan :&nbsp;
-                              <a class="btn btn-sm btn-danger p-0 text-white btn-lihat-file" target="_blank"
-                                style="padding: 1.8px 13px !important; font-size: 13px; font-weight: 600;">
-                                Lihat File
-                              </a>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="row row-data-karyawan justify-content-center d-none">
+              <div class="col" style="max-width: 690px;">
+                <div class="card">
+                  <div class="card-header custom-header">
+                    Data Karyawan
+                  </div>
+                  <div class="card-body">
+                    <div class="row" style="margin-top: -8px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>            
 
             <form class="needs-validation mt-1 d-none" novalidate>
               <div class="row justify-content-center">
@@ -399,18 +399,41 @@
 
                 if (response.status === "success") {
 
-                  var kode = btoa($(`input[name="kode_evaluasi_atasan"]`).val());
-
                   $(`form.needs-validation`).removeClass('d-none');
-                  $(`.row-review-file`).removeClass('d-none');
-                  $(`.row-review-file a`).attr('href', `/review-file/evaluasi/${kode}`);
+                  $(`.row-data-karyawan`).removeClass('d-none');
+
+                  // Menampilkan data karyawan
+                  var template = `
+                    <div class="col-12 my-2">
+                      NRP Karyawan <span style="padding-left: 20px;">:</span> ${response.data.nrp_karyawan}
+                    </div>
+                    <div class="col-12 mb-2">
+                      Nama Karyawan <span style="padding-left: 12px;">:</span> ${response.data.nama_karyawan}
+                    </div>
+                    <div class="col-12 mb-2">
+                      Departemen <span style="padding-left: 36px;">:</span> ${response.data.departemen}
+                    </div>
+                    <div class="col-12 mb-2">
+                      Jabatan <span style="padding-left: 66px;">:</span> ${response.data.posisi}
+                    </div>
+                    <div class="col-12 mb-2">
+                      Nama Pelatihan <span style="padding-left: 18px;">:</span> ${response.data.nama_pelatihan}
+                    </div>
+                    <div class="col-12">
+                      Bulan Pelatihan <span style="padding-left: 19px;">:</span> ${response.data.bulan_tahun_pelatihan}
+                    </div>
+                  `;  
+                  $(`.row-data-karyawan .row`).empty();            
+                  $(`.row-data-karyawan .row`).append(template);            
+                  // Menampilkan data karyawan
+                  
                   $('.needs-validation')[0].reset();
                   notifySuccessWithHideLoader(response.message, "Berhasil", "center");
                 } else {
                   // Menampilkan notif dan hilangkan loader
                   notifyFailedWithHideLoader(response.message, "Gagal", "center");
                   $(`form.needs-validation`).addClass('d-none');
-                  $(`.row-review-file`).addClass('d-none');
+                  $(`.row-data-karyawan`).addClass('d-none');
                   $('.needs-validation')[0].reset();
                 }
               },

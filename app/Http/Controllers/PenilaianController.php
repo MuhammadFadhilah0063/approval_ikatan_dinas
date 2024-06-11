@@ -59,7 +59,8 @@ class PenilaianController extends Controller
                 return response()->json([
                     "status" => "success",
                     "message" => "Data Evaluasi Hasil Pelatihan Ditemukan.",
-                    "kode_evaluasi_atasan" => $data->kode_evaluasi_atasan
+                    "kode_evaluasi_atasan" => $data->kode_evaluasi_atasan,
+                    "data" => $data,
                 ]);
             } else {
                 // Jika sudah dinilai
