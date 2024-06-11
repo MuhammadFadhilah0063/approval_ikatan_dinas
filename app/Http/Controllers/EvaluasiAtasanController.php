@@ -103,7 +103,7 @@ class EvaluasiAtasanController extends Controller
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($pathImgSection, $image_base64);
             [$width, $height] = getimagesize($pathImgSection);
-            $imageSectionHeight = (200 / $width) * $height;
+            $imageSectionHeight = (100 / $width) * $height;
         }
 
         // TTD Atasan
