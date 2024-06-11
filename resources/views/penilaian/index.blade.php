@@ -36,6 +36,10 @@
 
     {{-- Jquery Signature --}}
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.signature.css">
+
+    <style>
+   
+    </style>
   </head>
 
   {{-- Loader --}}
@@ -109,7 +113,7 @@
               <div class="col" style="max-width: 690px;">
                 <div class="card">
                   <div class="card-header custom-header">
-                    Data Karyawan
+                    Data Karyawan Yang Memerlukan Penilaian
                   </div>
                   <div class="card-body">
                     <div class="row" style="margin-top: -8px;">
@@ -426,6 +430,19 @@
                   $(`.row-data-karyawan .row`).empty();            
                   $(`.row-data-karyawan .row`).append(template);            
                   // Menampilkan data karyawan
+
+                  // Signature
+                  var sig = $('#sig').signature({
+                    syncField: '#signature64',
+                    syncFormat: 'PNG',
+                    background: 'transparent'
+                  });
+
+                  $('#clear').click(function(e) {
+                    e.preventDefault();
+                    sig.signature('clear');
+                    $("#signature64").val('');
+                  });
                   
                   $('.needs-validation')[0].reset();
                   notifySuccessWithHideLoader(response.message, "Berhasil", "center");
@@ -562,8 +579,10 @@
                   var kode = btoa(kodeEvaluasiAtasan);
 
                   $(`form.needs-validation`).addClass('d-none');
+                  $(`.row-data-karyawan`).addClass('d-none');
+                  $(`.row-data-karyawan .row`).empty();
                   $(`.row-review-file`).addClass('d-none');
-                    $('.needs-validation')[0].reset();
+                  $('.needs-validation')[0].reset();
                   $(`input[name="kode_evaluasi_atasan"]`).val("");
                   notifySuccessWithHideLoader(response.message, "Berhasil", "center");
 
@@ -583,19 +602,6 @@
           }
         });
         // Proses penilaian - End
-
-
-        // Signature
-        var sig = $('#sig').signature({
-          syncField: '#signature64',
-          syncFormat: 'PNG',
-          background: 'transparent'
-        });
-        $('#clear').click(function(e) {
-          e.preventDefault();
-          sig.signature('clear');
-          $("#signature64").val('');
-        });
 
       });
     </script>

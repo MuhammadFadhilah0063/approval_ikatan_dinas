@@ -127,7 +127,7 @@ class PenilaianController extends Controller
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($pathImgAtasan, $image_base64);
             [$width, $height] = getimagesize($pathImgAtasan);
-            $imageAtasanHeight = (100 / $width) * $height;
+            $imageAtasanHeight = (200 / $width) * $height;
         }
 
         $tgl_ttd_atasan = ($data->tgl_ttd_atasan) ? dateFormat($data->tgl_ttd_atasan) : "";
